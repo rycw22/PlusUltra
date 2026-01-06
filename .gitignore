@@ -39,3 +39,29 @@ masks/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# --- model weights / checkpoints ---
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine
+*.safetensors
+
+# --- datasets / generated outputs ---
+Videos/
+output/
+work_dir/
+work_dirs/
+show_dir/
+show_dirs/
+vis_data/
+*.avi
+*.mp4
+
+# --- caches ---
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
+
