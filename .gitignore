@@ -65,3 +65,14 @@ __pycache__/
 .DS_Store
 .ipynb_checkpoints/
 
+*.pt
+*.pth
+*.avi
+*.mp4
+output/
+work_dir/
+work_dirs/
+show_dir/
+show_dirs/
+Videos/
+vis_data/
