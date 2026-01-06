@@ -1,0 +1,26 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "file_name": "0X1A0A263B22CCD966_0030.png",
+      "height": 112,
+      "width": 224
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 1,
+      "category_id": 1,
+      "bbox": [0, 0, 224, 112],
+      "area": 25088,
+      "iscrowd": 0
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "lv"
+    }
+  ]
+}
