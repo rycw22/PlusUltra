@@ -9,51 +9,52 @@ UltraSAM performs high-quality **left-ventricle segmentation**, and EchoNet-Dyna
 ## How to Use it 
 (might have slight inconsistencies - check later)
 Pre: Download the UltraSAM .pth file from https://github.com/CAMMA-public/UltraSam, and put it into the UltraSAM folder
-1. Put your AVI in a folder, and name it a4c-video-dir
-2. Run UltraSAM by running the following lines in the terminal:
+1. _Put your AVI in a folder, and name it a4c-video-dir_
+2. _Run UltraSAM by running the following lines in the terminal:_
 
-cd UltraSam
+  cd UltraSam
 
-python tools/test.py \
-  configs/UltraSAM/UltraSAM_full/UltraSAM_box_refine.py \
-  UltraSam.pth \
-  --show-dir work_dir/my_run
+  python tools/test.py \
+    configs/UltraSAM/UltraSAM_full/UltraSAM_box_refine.py \
+    UltraSam.pth \
+    --show-dir work_dir/my_run
 
-3. Convert LV frames to AVI by running this:
+3. _Convert LV frames to AVI by running this:_
 
-ID="scan01"
-RUN="UltraSam/work_dir/my_run/avi_out/lvonly_frames"
+  ID="scan01"
+  RUN="UltraSam/work_dir/my_run/avi_out/lvonly_frames"
 
-mkdir -p dynamic/Videos
+  mkdir -p dynamic/Videos
 
-ffmpeg -y -framerate 30 -pattern_type glob \
-  -i "$RUN/${ID}_*.png" \
-  -vf "format=yuvj420p" \
-  -c:v mjpeg -q:v 3 \
-  "dynamic/Videos/${ID}.avi"
+  ffmpeg -y -framerate 30 -pattern_type glob \
+    -i "$RUN/${ID}_*.png" \
+    -vf "format=yuvj420p" \
+    -c:v mjpeg -q:v 3 \
+    "dynamic/Videos/${ID}.avi"
 
-4. Create FileList.csv by running this:
+4. _Create FileList.csv by running this:_
 
-cd dynamic
+  cd dynamic
 
-cat > FileList.csv << EOF
-FileName,Split,EF
-scan01.avi,TRAIN,0
-scan01.avi,VAL,0
-scan01.avi,TEST,0
-EOF
+  cat > FileList.csv << EOF
+  FileName,Split,EF
+  scan01.avi,TRAIN,0
+  scan01.avi,VAL,0
+  scan01.avi,TEST,0
+  EOF
 
-5. Convert UltraSAM masks to EchoNet format
-python scripts/masks_to_volume_tracings.py \
-  UltraSam/work_dir/my_run/avi_out/masks \
-  scan01.avi
+5. _Convert UltraSAM masks to EchoNet format_
+
+  python scripts/masks_to_volume_tracings.py \
+    UltraSam/work_dir/my_run/avi_out/masks \
+    scan01.avi
 
 
 This produces:
 
 VolumeTracings.csv
 
-6. Run EchoNet
+6. _Run EchoNet_
 echonet segmentation \
   --data_dir . \
   --output output_ultrasam \
@@ -66,6 +67,6 @@ echonet segmentation \
   --num_workers 0
 
 
-Results appear in:
+_Results appear in:_
 
 dynamic/output_ultrasam/
