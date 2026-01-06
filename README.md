@@ -6,12 +6,12 @@ UltraSAM performs high-quality **left-ventricle segmentation**, and EchoNet-Dyna
 
 ---
 
-## How to Use it (might be wrong - check later)
+## How to Use it 
+(might have slight inconsistencies - check later)
+Pre: Download the UltraSAM .pth file from https://github.com/CAMMA-public/UltraSam, and put it into the UltraSAM folder
+1. Put your AVI in a folder, and name it a4c-video-dir
+2. Run UltraSAM by running the following lines in the terminal:
 
-1. Put your AVI in:
-2. Run UltraSAM
-
-bash
 cd UltraSam
 
 python tools/test.py \
@@ -19,7 +19,8 @@ python tools/test.py \
   UltraSam.pth \
   --show-dir work_dir/my_run
 
-3. Convert LV frames to AVI
+3. Convert LV frames to AVI by running this:
+
 ID="scan01"
 RUN="UltraSam/work_dir/my_run/avi_out/lvonly_frames"
 
@@ -31,7 +32,8 @@ ffmpeg -y -framerate 30 -pattern_type glob \
   -c:v mjpeg -q:v 3 \
   "dynamic/Videos/${ID}.avi"
 
-4. Create FileList.csv
+4. Create FileList.csv by running this:
+
 cd dynamic
 
 cat > FileList.csv << EOF
